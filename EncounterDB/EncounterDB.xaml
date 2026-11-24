@@ -12,7 +12,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="自动"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <CollectionView HeightRequest="375" WidthRequest="400" x:Name="EncounterCollection" SelectionMode="Single" ></CollectionView>
         </Grid>
