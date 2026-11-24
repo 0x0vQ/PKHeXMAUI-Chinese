@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.MiscPokeGear"
+             Title="宝可装置">
+    <ScrollView Orientation="Both">
+        <Grid x:Name="G_pokegear" RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+            <CollectionView x:Name="CV_Pokegear" Grid.Column="1" Grid.RowSpan="3" HeightRequest="500" />
+            <Button x:Name="B_PokegearAll" Text="全部给予" Clicked="B_GiveAll_Click" />
+            <Button x:Name="B_PokegearDel" Grid.Row="1" Text="全部删除" Clicked="B_DeleteAll_Click" />
+            <Button x:Name="B_PokegearGiveAllNoTrainers" Text="全部给予（不含训练家）" Grid.Row="2" Clicked="B_GiveAllNoTrainers_Click" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

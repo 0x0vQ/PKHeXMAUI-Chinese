@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.TREditor"
+             Title="TR 编辑器">
+    <VerticalStackLayout>
+        <CollectionView HeightRequest="500" WidthRequest="400" x:Name="trcollection" SelectionMode="Multiple" ></CollectionView>
+        <Button x:Name="applytrs" Text="应用" Clicked="applytrsandclose"></Button>
+        <Button x:Name="applyalltrs" Text="全部应用" Clicked="applyalltrsandclose"/>
+        <Button x:Name="removealltrs" Text="全部移除" Clicked="removealltrsandclose"/>
+        <Button x:Name="close" Text="关闭" Clicked="closer"/>
+    </VerticalStackLayout>
+</ContentPage>

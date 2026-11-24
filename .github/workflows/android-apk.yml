@@ -1,0 +1,106 @@
+name: Build PKHeX MAUI Simplified Chinese APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main", "master", "chinese" ]
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Install .NET MAUI Android workload
+        run: dotnet workload install maui-android
+
+      - name: Prepare APK signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          STORE_PASSWORD_SECRET: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS_SECRET: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD_SECRET: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          KEYSTORE_PATH="$RUNNER_TEMP/pkhex-release.keystore"
+          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$STORE_PASSWORD_SECRET" ] && [ -n "$KEY_ALIAS_SECRET" ] && [ -n "$KEY_PASSWORD_SECRET" ]; then
+            echo "$KEYSTORE_BASE64" | base64 --decode > "$KEYSTORE_PATH"
+            echo "ANDROID_SIGNING_STORE_PASSWORD=$STORE_PASSWORD_SECRET" >> "$GITHUB_ENV"
+            echo "ANDROID_SIGNING_KEY_PASSWORD=$KEY_PASSWORD_SECRET" >> "$GITHUB_ENV"
+            echo "ANDROID_SIGNING_KEY_ALIAS=$KEY_ALIAS_SECRET" >> "$GITHUB_ENV"
+            echo "APK_SIGNING_MODE=persistent" >> "$GITHUB_ENV"
+          else
+            PASSWORD="$(openssl rand -hex 24)"
+            keytool -genkeypair -v -keystore "$KEYSTORE_PATH" -alias pkhex -keyalg RSA -keysize 2048 -validity 10000 -storepass "$PASSWORD" -keypass "$PASSWORD" -dname "CN=PKHeX MAUI Simplified Chinese, OU=Community, O=Community, L=Unknown, S=Unknown, C=US"
+            echo "ANDROID_SIGNING_STORE_PASSWORD=$PASSWORD" >> "$GITHUB_ENV"
+            echo "ANDROID_SIGNING_KEY_PASSWORD=$PASSWORD" >> "$GITHUB_ENV"
+            echo "ANDROID_SIGNING_KEY_ALIAS=pkhex" >> "$GITHUB_ENV"
+            echo "APK_SIGNING_MODE=temporary" >> "$GITHUB_ENV"
+          fi
+          echo "ANDROID_SIGNING_KEYSTORE=$KEYSTORE_PATH" >> "$GITHUB_ENV"
+
+      - name: Restore dependencies
+        run: dotnet restore PKHeX.MAUI.csproj -p:TargetFramework=net10.0-android36.0
+
+      - name: Build and sign APK
+        run: >-
+          dotnet publish PKHeX.MAUI.csproj
+          -f net10.0-android36.0
+          -c Release
+          -p:AndroidPackageFormat=apk
+          -p:AndroidKeyStore=true
+          -p:AndroidSigningKeyStore="$ANDROID_SIGNING_KEYSTORE"
+          -p:AndroidSigningKeyAlias="$ANDROID_SIGNING_KEY_ALIAS"
+          -p:AndroidSigningKeyPass=env:ANDROID_SIGNING_KEY_PASSWORD
+          -p:AndroidSigningStorePass=env:ANDROID_SIGNING_STORE_PASSWORD
+          -p:RunAOTCompilation=false
+          -o ./artifacts
+
+      - name: Verify signed APK
+        run: |
+          SIGNED_APK=$(find . -type f -name '*-Signed.apk' -not -path './.git/*' | head -n 1)
+          if [ -z "$SIGNED_APK" ]; then
+            echo "No signed APK was produced."
+            find ./artifacts -maxdepth 2 -type f -print || true
+            exit 1
+          fi
+          cp "$SIGNED_APK" ./artifacts/PKHeXMAUI-Simplified-Chinese.apk
+          if [ "$APK_SIGNING_MODE" = "temporary" ]; then
+            echo "This APK uses a one-time signing key. Uninstall it before installing a later build unless you configure a persistent keystore in repository secrets." >> ./artifacts/INSTALL-NOTE.txt
+          else
+            echo "This APK uses the persistent signing key configured in repository secrets." >> ./artifacts/INSTALL-NOTE.txt
+          fi
+
+      - name: Upload signed APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PKHeXMAUI-Simplified-Chinese-APK
+          path: |
+            artifacts/PKHeXMAUI-Simplified-Chinese.apk
+            artifacts/INSTALL-NOTE.txt
+          if-no-files-found: error
+          retention-days: 30

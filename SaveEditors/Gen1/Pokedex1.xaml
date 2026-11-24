@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.Pokedex1"
+             Title="图鉴编辑器（第一世代）">
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="已遇见：" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Text="已捕获：" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
+            <CollectionView x:Name="SeenCollection" Grid.Row="1" HeightRequest="250"/>
+            <CollectionView x:Name="CaughtCollection" Grid.Row="1" Grid.Column="1" HeightRequest="250"/>
+            <Button Text="全部见过" Grid.Row="2" Clicked="SetSeenAll"/>
+            <Button Text="全部捕获" Grid.Row="2" Grid.Column="1" Clicked="SetCaughtAll"/>
+            <Button Text="全部未见过" Grid.Row="3" Clicked="SetSeenNone"/>
+            <Button Text="全部未捕获" Grid.Row="3" Grid.Column="1" Clicked="SetCaughtNone"/>
+            <Button Text="保存" Grid.Row="4" Clicked="save"/>
+            <Button Text="取消" Grid.Row="4" Grid.Column="1" Clicked="close"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

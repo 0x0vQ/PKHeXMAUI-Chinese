@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.TrainerEditor7Misc"
+             Title="杂项">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Button Text="给予全部服装" Clicked="unlockfashion" />
+            <Picker x:Name="UnlockFashionPicker" />
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="肤色：" VerticalOptions="Center" />
+                <Picker x:Name="SkinColorPicker" Grid.Column="1"/>
+                <Label Text="距离刷新天数：" VerticalOptions="Center" Grid.Row="1"/>
+                <l:NumericUpDown x:Name="DaysRefreshedEntry" Grid.Row="1" Grid.Column="1"/>
+                <Label Text="精灵球投掷风格：" VerticalOptions="Center" Grid.Row="2"/>
+                <Picker x:Name="BallThrowPicker" Grid.Row="2" Grid.Column="1"/>
+                <Picker x:Name="BattleStlyeDisplayPicker" Grid.Row="3" SelectedIndexChanged="ChangeThrowCollection"/>
+                <CollectionView x:Name="ThrowsUnlockedCollection" Grid.Row="3" Grid.Column="1" SelectionMode="Multiple" HeightRequest="150"/>
+                <CollectionView x:Name="ThrowsLearnedCollection" Grid.Row="3" Grid.Column="1" SelectionMode="Multiple" HeightRequest="150" IsVisible="False"/>
+                <Label Text="宝可梦摄影器" Grid.Row="4"/>
+                <Label Text="点赞总数：" Grid.Row="5" VerticalOptions="Center"/>
+                <l:NumericUpDown x:Name="TThumbUpEntry" Grid.Row="5" Grid.Column="1"/>
+                <Label Text="记录点赞数：" Grid.Row="6" VerticalOptions="Center"/>
+                <l:NumericUpDown x:Name="RThumbsupEntry" Grid.Row="6" Grid.Column="1"/>
+                <Label Text="拍摄次数：" Grid.Row="7" VerticalOptions="Center"/>
+                <l:NumericUpDown x:Name="SnapCountEntry" Grid.Row="7" Grid.Column="1"/>
+                <Label Text="相机版本：" Grid.Row="8" VerticalOptions="Center"/>
+                <Picker x:Name="CameraVersionPicker" Grid.Row="8" Grid.Column="1"/>
+                <CheckBox x:Name="GyroCheck" Grid.Row="9"/>
+                <Label Text="陀螺仪" Grid.Row="9" Grid.Column="1" VerticalOptions="Center"/>
+                <Label Text="圆庆广场名称：" Grid.Row="10" VerticalOptions="Center"/>
+                <Entry x:Name="FPNameEntry" Grid.Row="10" Grid.Column="1"/>
+                <Label Text="印章：" Grid.Row="11" VerticalOptions="Center"/>
+                <CollectionView x:Name="StampCollection" Grid.Row="12" Grid.ColumnSpan="2" SelectionMode="Multiple" HeightRequest="300"/>
+                <CheckBox x:Name="MegaUnlockCheck" Grid.Row="13"/>
+                <Label Text="已解锁超级进化" Grid.Row="13" Grid.Column="1" VerticalOptions="Center"/>
+                <CheckBox x:Name="ZUnlockCheck" Grid.Row="14"/>
+                <Label Text="已解锁 Z 招式" Grid.Row="14" VerticalOptions="Center" Grid.Column="1"/>
+                
+            </Grid>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

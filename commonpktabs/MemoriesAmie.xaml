@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.MemoriesAmie"
+             Title="回忆"
+            BarBackgroundColor="#303030"
+            SelectedTabColor="#C8C8C8"
+            UnselectedTabColor="#919191"
+            BarTextColor="White">
+    <ContentPage Title="原训练家回忆" x:Name="OTMemories">
+            
+            <VerticalStackLayout x:Name="OTMemoryStack">
+                <Label x:Name="MemoriesWithOT" />
+                <Label Text="亲密度：" />
+                <Editor x:Name="Friendshipeditor" />
+                <Label Text="记忆类型" />
+                <Picker x:Name="MemoryTypePicker" Title="记忆类型"/>
+                <Button Text="保存" x:Name="savememories" Clicked="SaveMemoriesAndClose"/>
+                <Button Text="关闭" x:Name="closememories" Clicked="CloseMemories"/>
+            </VerticalStackLayout>
+        </ContentPage>
+
+
+        <ContentPage x:Name="NotOTMemories" Title="当前训练家回忆">
+            <VerticalStackLayout x:Name="HTMemoryStack">
+                <Label x:Name="MemoriesWithHT" />
+                <Label Text="亲密度：" />
+                <Editor x:Name="HTFriendshipeditor" />
+                <Label Text="记忆类型" />
+                <Picker x:Name="HTMemoryTypePicker" Title="记忆类型"/>
+                <Button Text="保存" x:Name="savememories2" Clicked="SaveMemoriesAndClose"/>
+                <Button Text="关闭" x:Name="closememories2" Clicked="CloseMemories"/>
+        </VerticalStackLayout>
+        </ContentPage>
+        <ContentPage x:Name="Other" Title="其他">
+        <VerticalStackLayout>
+            <Label Text="当前持有人："></Label>
+            <Editor IsReadOnly="True" x:Name="chlabel"></Editor>
+            <Label Text="饱腹度："></Label>
+            <Editor x:Name="fullnesseditor"/>
+            <Label Text="愉悦度："/>
+            <Editor x:Name="EnjoymentEditor"/>
+            <Button Text="保存" x:Name="savememories3" Clicked="SaveMemoriesAndClose"/>
+            <Button Text="关闭" x:Name="closememories3" Clicked="CloseMemories"/>
+        </VerticalStackLayout>
+    </ContentPage>
+  
+</TabbedPage>

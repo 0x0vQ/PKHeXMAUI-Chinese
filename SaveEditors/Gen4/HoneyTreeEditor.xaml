@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.HoneyTreeEditor"
+             Title="甜甜蜜树">
+    <VerticalStackLayout>
+        <Label Text="卡比兽树：" x:Name="L_Munchlax" />
+        <Label x:Name="L_Tree0" />
+        <Label Text="甜甜蜜树"/>
+        <l:comboBox x:Name="CB_TreeList" SelectedIndexChanged="ChangeTree"/>
+        <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*">
+            <Label Text="树木信息"/>
+            <Label Text="分组" Grid.Row="1"/>
+            <Label Text="栏位" Grid.Row="1" Grid.Column="1"/>
+            <l:NumericUpDown x:Name="NUD_Group" Grid.Row="2" MaxValue="3" MinValue="0" ValueChanged="ChangeGroupSlot"/>
+            <l:NumericUpDown x:Name="NUD_Slot" Grid.Row="2" Grid.Column="1" MaxValue="5" MinValue="0" ValueChanged="ChangeGroupSlot"/>
+            <Label x:Name="L_Species" Grid.Row="2" Grid.Column="2"/>
+            <Label Text="剩余时间（分钟）" Grid.Row="3"/>
+            <Label Text="摇晃" Grid.Row="3" Grid.Column="1"/>
+            <l:NumericUpDown x:Name="NUD_Time" Grid.Row="4" MinValue="0" MaxValue="1440"/>
+            <l:NumericUpDown x:Name="NUD_Shake" Grid.Row="4" Grid.Column="1" MinValue="0" MaxValue="3"/>
+            <Button x:Name="B_Catchable" Text="设为可捕捉" Clicked="B_Catchable_Clicked" Grid.Row="5"/>
+            <Button x:Name="B_Cancel" Text="取消" Clicked="B_Cancel_Clicked" Grid.Row="6"/>
+            <Button x:Name="B_Save" Text="保存" Clicked="B_Save_Clicked" Grid.Row="6" Grid.Column="1"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.WondercardEditor"
+             Title="神秘礼物卡编辑器">
+    <ScrollView>
+        <Grid ColumnDefinitions="*,2*" RowDefinitions="*,*,*,*">
+            <VerticalStackLayout>
+                <Label Text="接收列表："/>
+                <CollectionView BackgroundColor="White" HeightRequest="1000" x:Name="CV_ReceivedList" SelectionMode="单打" SelectionChanged="CV_ReceivedList_SelectionChanged" Grid.Row="1"/>
+            </VerticalStackLayout>
+            <Grid Grid.Column="1" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                <Label Text="二维码" x:Name="L_QR"/>
+                <Image Grid.Column="1" x:Name="IMG_ActiveSprite" Source="iconp.png" HeightRequest="50" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <VerticalStackLayout Grid.Column="2">
+                    <Button Text="导出" Clicked="B_ExportClick"/>
+                    <Button Text="导入" Clicked="B_ImportClick" Grid.Row="1"/>
+                </VerticalStackLayout>
+                <Label Text="详细信息：" Grid.Row="1"/>
+                <Editor x:Name="E_Details" Grid.Row="2" IsReadOnly="True"/>
+            </Grid>
+            <Grid Grid.Row="1" x:Name="G_Gifts"></Grid>
+            <Button Text="全部设为未使用" x:Name="B_UnusedAll" Clicked="B_ModifyAll_Click" Grid.Row="2"/>
+            <Button Text="全部设为已使用" x:Name="B_UsedAll" Clicked="B_ModifyAll_Click" Grid.Row="2" Grid.Column="1"/>
+            <Button Text="关闭" x:Name="B_Close" Clicked="B_Close_Click" Grid.Row="3"/>
+            <Button Text="保存" x:Name="B_Save" Clicked="B_Save_Click" Grid.Row="3" Grid.Column="1"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

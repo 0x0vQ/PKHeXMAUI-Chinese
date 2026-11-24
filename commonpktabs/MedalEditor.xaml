@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.MedalEditor"
+             Title="奖牌编辑器">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+               
+            <CollectionView x:Name="rankside" WidthRequest="200" HeightRequest="400" Grid.Row="0" Grid.Column="0"></CollectionView>
+            <CollectionView x:Name="distsuperside" WidthRequest="200" HeightRequest="400" Grid.Column="1" Grid.Row="0"></CollectionView>
+                <CheckBox x:Name="SuperUnlockedCheck" HorizontalOptions="End" Grid.Column="0" Grid.Row="1" CheckedChanged="UnlockSuperTraining" IsVisible="false"/>
+                <Label x:Name="SuperUnlockLabel" Grid.Column="1" Grid.Row="1" Text="已解锁秘密训练" IsVisible="false"/>
+                <CheckBox x:Name="SecretCompleteCheck" HorizontalOptions="End" Grid.Column="0" Grid.Row="2" CheckedChanged="CompleteSecretTraining" IsVisible="false"/>
+                <Label x:Name="SecretCompleteLabel" Grid.Column="1" Grid.Row="2"  Text="已完成秘密训练" IsVisible="false"/>
+                <Label x:Name="LastBagLabel" Grid.Column="0" Grid.Row="3" Text="上次使用的背包：" IsVisible="false"/>
+                <Picker x:Name="BagPicker" Grid.Column="1" Grid.Row="3" IsVisible="false"/>
+            </Grid>
+            <Button Text="全部应用" Clicked="ApplyAllST"></Button>
+            <Button Text="全部移除" Clicked="RemoveAllST"/>
+            <Button Text="保存" Clicked="SaveST"></Button>
+            <Button Text="取消" Clicked="CloseST"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

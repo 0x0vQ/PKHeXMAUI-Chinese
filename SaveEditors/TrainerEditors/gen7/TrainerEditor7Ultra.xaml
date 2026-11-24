@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.TrainerEditor7Ultra"
+             Title="训练家编辑器（第七世代·究极版）">
+    <VerticalStackLayout>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="冲浪得分"/>
+            <Label Text="美乐美乐岛：" Grid.Row="1" VerticalOptions="Center"/>
+            <l:NumericUpDown x:Name="MeleSurfScoreEntry" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="阿卡拉岛：" Grid.Row="2" VerticalOptions="Center"/>
+            <l:NumericUpDown x:Name="AkaSurfScoreEntry" Grid.Row="2" Grid.Column="1"/>
+            <Label Text="乌拉乌拉岛：" Grid.Row="3" VerticalOptions="Center"/>
+            <l:NumericUpDown x:Name="UlaSurfScoreEntry" Grid.Row="3" Grid.Column="1"/>
+            <Label Text="波尼岛：" Grid.Row="4" VerticalOptions="Center"/>
+            <l:NumericUpDown x:Name="PoniSurfScoreEntry" Grid.Row="4" Grid.Column="1"/>
+            <Label Text="洛托姆" Grid.Row="5" VerticalOptions="Center"/>
+            <Label Text="洛托姆原训练家：" Grid.Row="6" VerticalOptions="Center"/>
+            <Entry x:Name="RotomOTEntry" Grid.Row="6" Grid.Column="1"/>
+            <Label Text="好感度：" Grid.Row="7" VerticalOptions="Center"/>
+            <l:NumericUpDown x:Name="AffectionEntry" Grid.Row="7" Grid.Column="1"/>
+            <CheckBox x:Name="Loto1Check" Grid.Row="8"/>
+            <Label Text="抽奖 1" Grid.Row="8" Grid.Column="1" VerticalOptions="Center"/>
+            <CheckBox x:Name="Loto2Check" Grid.Row="9"/>
+            <Label Text="抽奖 2" Grid.Row="9" Grid.Column="1" VerticalOptions="Center"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

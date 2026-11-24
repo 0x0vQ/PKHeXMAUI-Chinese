@@ -1,0 +1,517 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-ios;net10.0-maccatalyst;net10.0-android36.0;net10.0-windows10.0.26100.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>PKHeXMAUI</RootNamespace>
+		<ApplicationTitle>PKHeX MAUI 简体中文版</ApplicationTitle>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<ApplicationIdGuid>df8a5c06-c9c7-4853-8e8d-ea0ceb7b8e41</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <RunAOTCompilation>False</RunAOTCompilation>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android36.0|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidUseAapt2>True</AndroidUseAapt2>
+	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+	  <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+	  <RunAOTCompilation>False</RunAOTCompilation>
+	  <ApplicationVersion>1</ApplicationVersion>
+	  <ApplicationDisplayVersion>26.11.08</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android36.0|AnyCPU'">
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidUseAapt2>True</AndroidUseAapt2>
+	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+	  <ApplicationVersion>1</ApplicationVersion>
+	  <ApplicationDisplayVersion>26.11.08</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
+	  <ApplicationVersion>1</ApplicationVersion>
+	  <ApplicationDisplayVersion>26.11.08</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-maccatalyst|AnyCPU'">
+	  <ApplicationVersion>1</ApplicationVersion>
+	  <ApplicationDisplayVersion>26.11.08</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.26100.0|AnyCPU'">
+	  <ApplicationVersion>1</ApplicationVersion>
+	  <ApplicationDisplayVersion>26.11.08</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|AnyCPU'">
+	  <ApplicationVersion>1</ApplicationVersion>
+	  <ApplicationDisplayVersion>26.11.08</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-maccatalyst|AnyCPU'">
+	  <ApplicationVersion>1</ApplicationVersion>
+	  <ApplicationDisplayVersion>26.11.08</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.26100.0|AnyCPU'">
+	  <ApplicationVersion>1</ApplicationVersion>
+	  <ApplicationDisplayVersion>26.11.08</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\icon.png" ForegroundFile="Resources\AppIcon\icon.png" />
+	
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\bg009.png" BaseSize="250,250" Color="Black" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\generalicons\*" />
+		<MauiImage Include="Resources\Images\balls\*" />
+		<MauiImage Include="Resources\Images\SVSprites\*" />
+		<MauiImage Include="Resources\Images\NonShinySprites\*" />
+		<MauiImage Update="Resources\Images\iconp.png" />
+		<MauiImage Include="Resources\Images\Ribbons\*" />
+		<MauiImage Include="Resources\Images\ShinySprites\*" />
+		<MauiImage Include="Resources\Images\SVItemSprites\*" />
+		<MauiImage Include="Resources\Images\ItemSprites\*" />
+		<MauiImage Include="Resources\Images\teratypes\*" />
+		<MauiImage Include="Resources\Images\Trainer Sprites\*" />
+		
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Assets\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="FlatBuffers\**" />
+	  <AndroidResource Remove="pkNX.Structures.FlatBuffers\**" />
+	  <Compile Remove="FlatBuffers\**" />
+	  <Compile Remove="pkNX.Structures.FlatBuffers\**" />
+	  <EmbeddedResource Remove="FlatBuffers\**" />
+	  <EmbeddedResource Remove="pkNX.Structures.FlatBuffers\**" />
+	  <MauiCss Remove="FlatBuffers\**" />
+	  <MauiCss Remove="pkNX.Structures.FlatBuffers\**" />
+	  <MauiXaml Remove="FlatBuffers\**" />
+	  <MauiXaml Remove="pkNX.Structures.FlatBuffers\**" />
+	  <None Remove="FlatBuffers\**" />
+	  <None Remove="pkNX.Structures.FlatBuffers\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Remove="Resources\Assets\AboutAssets.txt" />
+	  <MauiAsset Remove="Resources\Assets\encounter_gem_paldea.pkl" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Assets\AboutAssets.txt" />
+	  <EmbeddedResource Include="Resources\Assets\encounter_gem_paldea.pkl" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="deps\RaidLocations.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\iconp.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.8" />
+		<PackageReference Include="Octokit" Version="14.0.0" />
+		<PackageReference Include="PKHeX.Core" Version="26.10.18" />
+		<PackageReference Include="Plugin.Maui.Audio" Version="3.1.1" />
+		<PackageReference Include="SkiaSharp" Version="4.153.1" />
+		<PackageReference Include="System.Drawing.Common" Version="10.0.13" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.120" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="15.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="PKHeX.Core.AutoMod">
+	    <HintPath>deps\PKHeX.Core.AutoMod.dll</HintPath>
+	  </Reference>
+	  <Reference Include="PKHeX.Core.Injection">
+	    <HintPath>deps\PKHeX.Core.Injection.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="boxtab\BoxTab.xaml.cs">
+	    <DependentUpon>BoxTab.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="commonpktabs\MemoriesAmie.xaml.cs">
+	    <DependentUpon>MemoriesAmie.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="commonpktabs\MedalEditor.xaml.cs">
+	    <DependentUpon>MedalEditor.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="commonpktabs\TREditor.xaml.cs">
+	    <DependentUpon>TREditor.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="EncounterDB\EncounterDB.xaml.cs">
+	    <DependentUpon>EncounterDB.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="EncounterDB\SearchSettings.xaml.cs">
+	    <DependentUpon>SearchSettings.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="HomePage.xaml.cs">
+	    <DependentUpon>HomePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="LiveHex\LiveHex.xaml.cs">
+	    <DependentUpon>LiveHex.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="pktabs\PKTab.xaml.cs">
+	    <DependentUpon>PKTab.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="pktabs\MetTab.xaml.cs">
+	    <DependentUpon>MetTab.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="commonpktabs\RibbonSelector.xaml.cs">
+	    <DependentUpon>RibbonSelector.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="pktabs\StatsTab.xaml.cs">
+	    <DependentUpon>StatsTab.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\Gen1\EventReset1.xaml.cs">
+	    <DependentUpon>EventReset1.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\Gen2\EventResearch2.xaml.cs">
+	    <DependentUpon>EventResearch2.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\Gen3\Misc\MiscMain.xaml.cs">
+	    <DependentUpon>MiscMain.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\Gen3\RoamerEditor3.xaml.cs">
+	    <DependentUpon>RoamerEditor3.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\Gen4\Geonet4Editor.xaml.cs">
+	    <DependentUpon>Geonet4Editor.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\Gen5\Misc\MiscMain5.xaml.cs">
+	    <DependentUpon>MiscMain5.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\Gen5\Misc\MiscSubway.xaml.cs">
+	    <DependentUpon>MiscSubway.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\SaveAccessors\gen8+\BlockEditor8.xaml.cs">
+	    <DependentUpon>BlockEditor8.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\SaveAccessors\gen8+\BlockDataTab.xaml.cs">
+	    <DependentUpon>BlockDataTab.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\Save Editors.xaml.cs">
+	    <DependentUpon>Save Editors.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SaveEditors\TrainerEditors\gen7\Trainertab7.xaml.cs">
+	    <DependentUpon>Trainertab7.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Settings\LegalitySettings.xaml.cs">
+	    <DependentUpon>LegalitySettings.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="boxtab\BatchEditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="boxtab\BoxTab.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="commonpktabs\MemoriesAmie.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="commonpktabs\MoveShopEditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="commonpktabs\MedalEditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="commonpktabs\TextEditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="commonpktabs\TREditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="EncounterDB\EncounterDB.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="EncounterDB\SearchSettings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="LiveHex\LiveHex.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="pktabs\AttacksTab.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="pktabs\Cosmeticstab.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="pktabs\MetTab.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="commonpktabs\RibbonSelector.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="pktabs\OTTab.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="pktabs\StatsTab.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Event Flags\EventConstants.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Event Flags\EventFlags.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Event Flags\EventResearch.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen1\EventReset1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen1\Pokedex1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen2\EventConstants2.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen2\EventFlags2.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen2\EventResearch2.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen2\MailBox.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\HallOfFame3.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\Misc\MiscBattleFrontier.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\Misc\MiscDecorations.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\Misc\MiscFerry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\Misc\MiscJoyful.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\Misc\MiscPaintings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\Misc\MiscPokeblock.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\Misc\MiscRecords.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\RoamerEditor3.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen3\RTC3Editor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Geonet4Editor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\HoneyTreeEditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Misc\MiscBattleFrontier4.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Misc\MiscFashionCase.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Misc\MiscMain.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Misc\MiscPoffins.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Misc\MiscPokeGear.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Misc\MiscPokeWalker.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Misc\MiscRecords4.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Misc\MiscSeals.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Underground\Underground.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Underground\UndergroundGoods.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Underground\UndergroundSpheres.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Underground\UndergroundTraps.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen4\Underground\UndergroundTreasures.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen5\Misc\MiscCityForest.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen5\Misc\MiscEntree.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen5\Misc\MiscForest.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen5\Misc\MiscMain5.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen5\Misc\MiscMedals.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen5\Misc\MiscMusical.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen5\Misc\MiscSubway.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\SaveAccessors\gen8+\BlockEditor8.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\SaveAccessors\gen8+\BlockDataTab.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Save Editors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\SaveAccessors\SavAccessorGUI.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\Gen1\TrainerEditor1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen6\TrainerEditor6.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen6\TrainerEditor6Appearance.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen6\TrainerEditor6BadgeMap.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen6\TrainerEditor6Maison.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen6\TrainerEditor6Multiplayer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen6\TrainerTab6.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen7\TrainerEditor7.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen7\TrainerEditor7BattleTree.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen7\TrainerEditor7Map.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen7\TrainerEditor7Misc.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen7\TrainerEditor7Ultra.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen8a\TrainerEditor8a.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen8a\TrainerEditor8aMap.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen8a\TrainerTab8a.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen9\TrainerEditor9.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen9\TrainerEditor9Blueberry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen9\TrainerEditor9Misc.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen9\TrainerImages.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen9\TrainerTab9.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\TrainerEditors\gen7\Trainertab7.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SaveEditors\WondercardEditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Settings\LegalitySettings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Util\NumericUpDown.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Util\propertyGrid.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="SaveEditors\TrainerEditors\gen8b\" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.TrainerEditor6Appearance"
+             Title="外观">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="训练家昵称："/>
+            <Entry x:Name="TNickEntry" />
+            <Button Text="给予全部配饰" Clicked="GiveAllAccessories"/>
+            <Grid x:Name="BlockStack">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                </Grid.RowDefinitions>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

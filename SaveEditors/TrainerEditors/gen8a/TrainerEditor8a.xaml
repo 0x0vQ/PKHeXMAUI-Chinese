@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.TrainerEditor8a"
+             Title="概览">
+    <VerticalStackLayout>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="训练家姓名：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Entry Grid.Column="1" x:Name="OTName"/>
+        </Grid>
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="秘密 ID：" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Entry Grid.Column="1" x:Name="TE8aSIDEntry"/>
+            <Label Grid.Column="2" Text="$:" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Entry Grid.Column="3" x:Name="TE8aMoneyEntry"/>
+            <Button Grid.Column="4" Text="+" Clicked="MaxMoney"/>
+            <Label Text="训练家 ID：" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Entry Grid.Row="1" Grid.Column="1" x:Name="TE8aTIDEntry"/>
+            <Picker Grid.Row="1" Grid.Column="2" x:Name="TE8aGenderPicker"/>
+            <Label Grid.Row="1" Grid.Column="3" Text="语言：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Picker Grid.Row="1" Grid.Column="4" x:Name="TE8aLanguagePicker"/>
+        </Grid>
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="当前功绩点数：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <l:NumericUpDown Grid.Column="1" x:Name="TE8aCMPEntry"/>
+            <Label Grid.Row="1" Text="已获得功绩点数：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <l:NumericUpDown Grid.Row="1" Grid.Column="1" x:Name="TE8aEMPEntry"/>
+            <Label Grid.Row="2" Text="银河队等级：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <l:NumericUpDown Grid.Row="2" Grid.Column="1" x:Name="TE8aGREntry"/>
+            <Label Grid.Row="3" Text="背包升级：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <l:NumericUpDown Grid.Row="3" Grid.Column="1" x:Name="TE8aSUEntry"/>
+        </Grid>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="小时：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Entry Grid.Column="1" x:Name="TE8aHPEntry"/>
+            <Label Text="分钟：" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Entry Grid.Column="3" x:Name="TE8aMPEntry"/>
+            <Label Text="秒：" Grid.Column="4" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Entry Grid.Column="5" x:Name="TE8aSPEntry"/>
+        </Grid>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="游戏开始时间：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <DatePicker Grid.Column="1" x:Name="TE8aGSDatePicker"/>
+            <TimePicker Grid.Column="2" x:Name="TE8aGSTimePicker"/>
+            <Label Text="上次保存：" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center"/>
+            <DatePicker Grid.Row="1" Grid.Column="1" x:Name="TE8aLSDatePicker"/>
+            <TimePicker Grid.Row="1" Grid.Column="2" x:Name="TE8aLSTimePicker"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

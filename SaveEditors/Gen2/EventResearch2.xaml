@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.EventResearch2"
+             Title="事件研究">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="检查状态"/>
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*">
+                <Label Text="标记："/>
+                <l:NumericUpDown x:Name="NUD_Flag" Grid.Column="1" ValueChanged="NUD_Flag_ValueChanged"/>
+                <CheckBox x:Name="CHK_CustomFlag" Grid.Column="2" CheckedChanged="CHK_CustomFlag_CheckedChanged"/>
+                <Label x:Name="L_Stats" Text="常量：" Grid.Row="1"/>
+                <l:comboBox x:Name="CB_Stats" Grid.Column="1" Grid.Row="1" SelectedIndexChanged="CB_Stats_SelectedIndexChanged"/>
+                <Entry x:Name="E_Stat" Grid.Column="2" Grid.Row="1" TextChanged="E_Stat_TextChanged"/>
+            </Grid>
+            <Label Text="标记差异分析"/>
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*">
+                <Button Text="加载旧数据" Clicked="B_LoadOld_Clicked"/>
+                <Entry x:Name="L_Old" Grid.Column="1" TextChanged="L_Old_Changed"/>
+                <Button Text="加载新数据" Clicked="B_LoadNew_Clicked" Grid.Row="1"/>
+                <Entry x:Name="L_New" Grid.Column="1" Grid.Row="1" TextChanged="L_Old_Changed"/>
+                <Label Text="已设置：" Grid.Row="2"/>
+                <Entry x:Name="E_IsSet" Grid.Row="2" Grid.Column="1"/>
+                <Label Text="未设置：" Grid.Row="3"/>
+                <Entry x:Name="E_UnSet" Grid.Row="3" Grid.Column="1"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

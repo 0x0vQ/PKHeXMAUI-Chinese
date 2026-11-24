@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.ChatterEditor"
+             Title="叫声编辑器">
+    <ScrollView>
+        <Grid ColumnDefinitions="*,*" RowDefinitions="2*,*">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*">
+                <Button Text="播放录音" Clicked="B_PlayRecording_Click"/>
+                <CheckBox x:Name="CHK_Initialized" CheckedChanged="CHK_Initialized_CheckChanged" Grid.Row="1"/>
+                <Label Text="已初始化" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="混乱概率：" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Entry x:Name="Entry_Confusion" Keyboard="Numeric" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Grid>
+            <Grid Grid.Column="1" RowDefinitions="*,*,*">
+                <Button Text="导入 .pcm" Clicked="B_Importpcm_clicked"/>
+                <Button Text="导出 .pcm" Clicked="B_Exportpcm_clicked" Grid.Row="1"/>
+                <Button Text="导出 .wav" Clicked="B_Exportwav_clicked" Grid.Row="2"/>
+            </Grid>
+            <Button Text="保存" Clicked="B_Save_Click" Grid.Row="1"/>
+            <Button Text="取消" Clicked="B_Cancel_Click" Grid.Row="1" Grid.Column="1"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

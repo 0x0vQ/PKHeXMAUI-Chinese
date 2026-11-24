@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.MailBox"
+             Title="邮箱编辑器">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+                <Label Text="队伍邮箱"/>
+                <Label Text="电脑邮箱" Grid.Column="1"/>
+                <CollectionView x:Name="CV_PartyHeld" HeightRequest="150" Grid.Row="1" SelectionChanged="EntryControl" SelectionMode="单打"/>
+                <CollectionView x:Name="CV_PCBox" HeightRequest="150" Grid.Row="1" Grid.Column="1" SelectionChanged="EntryControl" SelectionMode="单打"/>
+            </Grid>
+            <Grid ColumnDefinitions="*,*,*">
+                <Label x:Name="L_BoxSize" Text="电脑邮箱已处理："/>
+                <l:NumericUpDown x:Name="NUD_BoxSize" Grid.Column="1" MinValue="0" MaxValue="10" ValueChanged="MBServedValueChanged"/>
+                <Button Text="删除" Grid.Column="2"/>
+            </Grid>
+            <Grid ColumnDefinitions="*,*">
+                
+                
+            </Grid>
+            <Grid x:Name="GB_MessageTB" RowDefinitions="*,*,*">
+                <Label Text="消息" />
+                <Entry x:Name="Message1"/>
+                <Entry x:Name="Message2"/>
+                
+            </Grid>
+            <Grid x:Name="GB_MessageNUD" RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*,*">
+                <l:NumericUpDown x:Name="NUD_Message00" MinValue="0" MaxValue="65535"/>
+                <l:NumericUpDown x:Name="NUD_Message01" MinValue="0" MaxValue="65535" Grid.Column="1"/>
+                <l:NumericUpDown x:Name="NUD_Message02" MinValue="0" MaxValue="65535" Grid.Column="2"/>
+                <l:NumericUpDown x:Name="NUD_Message03" MinValue="0" MaxValue="65535" Grid.Column="3"/>
+                <l:NumericUpDown x:Name="NUD_Message10" MinValue="0" MaxValue="65535" Grid.Row="1"/>
+                <l:NumericUpDown x:Name="NUD_Message11" MinValue="0" MaxValue="65535" Grid.Row="1" Grid.Column="1"/>
+                <l:NumericUpDown x:Name="NUD_Message12" MinValue="0" MaxValue="65535" Grid.Row="1" Grid.Column="2"/>
+                <l:NumericUpDown x:Name="NUD_Message13" MinValue="0" MaxValue="65535" Grid.Row="1" Grid.Column="3"/>
+                <l:NumericUpDown x:Name="NUD_Message20" MinValue="0" MaxValue="65535" Grid.Row="2"/>
+                <l:NumericUpDown x:Name="NUD_Message21" MinValue="0" MaxValue="65535" Grid.Row="2" Grid.Column="1"/>
+                <l:NumericUpDown x:Name="NUD_Message22" MinValue="0" MaxValue="65535" Grid.Row="2" Grid.Column="2"/>
+                <l:NumericUpDown x:Name="NUD_Message23" MinValue="0" MaxValue="65535" Grid.Row="2" Grid.Column="3"/>
+                <l:NumericUpDown x:Name="NUD_MessageEnding" MinValue="0" MaxValue="65535" Grid.Row="3"/> 
+            </Grid>
+            <Grid x:Name="GB_Author" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                <Label Text="作者" />
+                <Entry x:Name="AuthorOT" Grid.Row="1"/>
+                <ImageButton x:Name="L_OTGender" Grid.Row="1" Grid.Column="1" BorderWidth="1" Clicked="L_OTGender_Click"/>
+                <Picker x:Name="AuthorLang" Grid.Row="1" Grid.Column="2"/>
+                <l:NumericUpDown x:Name="NUD_AuthorTID" MinValue="0" MaxValue="65535" Grid.Row="2" />
+                <l:NumericUpDown x:Name="NUD_AuthorSID" MinValue="0" MaxValue="65535" Grid.Row="2" Grid.Column="1"/>
+                <l:comboBox x:Name="CB_AuthorVersion" Grid.Row="2" Grid.Column="2"/>
+                <CheckBox x:Name="CHK_UserEntered" Grid.Row="2" Grid.Column="1" />
+                <Label x:Name="L_UserEntered" Text="用户输入" Grid.Row="2" Grid.Column="2" />
+            </Grid>
+            <Grid x:Name="GB_MailType" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*">
+                <Label Text="邮件类型："/>
+                <Picker x:Name="MailTypePicker" Grid.Column="1"/>
+                <Label x:Name="L_MiscValue" Text="杂项：" Grid.Row="1"/>
+                <l:NumericUpDown x:Name="NUD_Misc1" Grid.Row="1" Grid.Column="1" MinValue="0" MaxValue="65535"/>
+                <l:NumericUpDown x:Name="NUD_Misc2" Grid.Row="1" Grid.Column="2" MinValue="0" MaxValue="65535"/>
+                <l:NumericUpDown x:Name="NUD_Misc3" Grid.Row="1" Grid.Column="3" MinValue="0" MaxValue="65535"/>
+                <Label x:Name="L_AppearPKM" Text="出现的宝可梦：" Grid.Row="1"/>
+                <l:comboBox x:Name="CB_AppearPKM1" Grid.Row="1" Grid.Column="1"/>
+                <l:comboBox x:Name="CB_AppearPKM2" Grid.Row="1" Grid.Column="2"/>
+                <l:comboBox x:Name="CB_AppearPKM3" Grid.Row="1" Grid.Column="3"/>
+            </Grid>
+            <Grid x:Name="GB_PKM" ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
+                <Label Text="持有的邮件 ID" Grid.Row="2"/>
+                <Label x:Name="L_PKM1" Grid.Row="3"/>
+                <Label x:Name="L_HeldItem1" Grid.Row="4"/>
+                <l:NumericUpDown x:Name="NUD_MailID1" Grid.Row="4" Grid.Column="1"/>
+                <Label x:Name="L_PKM2" Grid.Row="5"/>
+                <Label x:Name="L_HeldItem2" Grid.Row="6"/>
+                <l:NumericUpDown x:Name="NUD_MailID2" Grid.Row="6" Grid.Column="1"/>
+                <Label x:Name="L_PKM3" Grid.Row="7"/>
+                <Label x:Name="L_HeldItem3" Grid.Row="8"/>
+                <l:NumericUpDown x:Name="NUD_MailID3" Grid.Row="8" Grid.Column="1"/>
+                <Label x:Name="L_PKM4" Grid.Row="9"/>
+                <Label x:Name="L_HeldItem4" Grid.Row="10"/>
+                <l:NumericUpDown x:Name="NUD_MailID4" Grid.Row="10" Grid.Column="1"/>
+                <Label x:Name="L_PKM5" Grid.Row="11"/>
+                <Label x:Name="L_HeldItem5" Grid.Row="12"/>
+                <l:NumericUpDown x:Name="NUD_MailID5" Grid.Row="12" Grid.Column="1"/>
+                <Label x:Name="L_PKM6" Grid.Row="13"/>
+                <Label x:Name="L_HeldItem6" Grid.Row="14"/>
+                <l:NumericUpDown x:Name="NUD_MailID6" Grid.Row="14" Grid.Column="1"/>
+                <Button Grid.Row="15" Clicked="B_Save_Clicked" Text="保存"/>
+                <Button Grid.Row="15" Grid.Column="1" Text="取消" Clicked="close"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

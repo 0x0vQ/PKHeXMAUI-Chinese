@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.RoamerEditor3"
+             Title="游走宝可梦">
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*">
+        <Label Text="宝可梦种类：" VerticalOptions="Center"/>
+        <local:comboBox x:Name="CB_Species" Grid.Column="1"/>
+        <Label Text="等级：" Grid.Row="1" VerticalOptions="Center"/>
+        <local:NumericUpDown x:Name="NUD_Level" Grid.Row="1" Grid.Column="1" MaxValue="100"/>
+        <Label Text="个人值（PID）：" Grid.Row="2" VerticalOptions="Center"/>
+        <Entry x:Name="E_PID" Grid.Row="2" Grid.Column="1" TextChanged="TB_PID_TextChanged"/>
+        <CheckBox x:Name="CHK_Active" Grid.Row="3"/>
+        <Label Text="巡游（已激活）" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"/>
+        <CheckBox x:Name="CHK_Shiny" Grid.Row="4"/>
+        <Label Text="闪光" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"/>
+        <Label Text="HP：" Grid.Row="5" VerticalOptions="Center"/>
+        <Entry x:Name="E_HPIV" Grid.Row="5" Grid.Column="1" Keyboard="Numeric"/>
+        <Label Text="攻击：" Grid.Row="6" VerticalOptions="Center"/>
+        <Entry x:Name="E_ATKIV" Grid.Row="6" Grid.Column="1" Keyboard="Numeric"/>
+        <Label Text="防御：" Grid.Row="7" VerticalOptions="Center"/>
+        <Entry x:Name="E_DEFIV" Grid.Row="7" Grid.Column="1" Keyboard="Numeric"/>
+        <Label Text="特攻：" Grid.Row="8" VerticalOptions="Center"/>
+        <Entry x:Name="E_SPAIV" Grid.Row="8" Grid.Column="1" Keyboard="Numeric"/>
+        <Label Text="特防：" Grid.Row="9" VerticalOptions="Center"/>
+        <Entry x:Name="E_SPDIV" Grid.Row="9" Grid.Column="1" Keyboard="Numeric"/>
+        <Label Text="速度：" Grid.Row="10" VerticalOptions="Center"/>
+        <Entry x:Name="E_SPEIV" Grid.Row="10" Grid.Column="1" Keyboard="Numeric"/>
+        <Button Text="取消" Clicked="close" Grid.Row="11"/>
+        <Button Text="保存" Clicked="Save" Grid.Row="11" Grid.Column="1"/>
+    </Grid>
+</ContentPage>

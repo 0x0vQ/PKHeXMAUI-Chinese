@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.LiveHex"
+             Title="实时修改">
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+                <RowDefinition Height="自动"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+
+
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" Text="连接"  x:Name="connect" Clicked="botbaseconnect"></Button>
+            <Label Text="IP 地址：" Grid.Row="1" Grid.Column="0"/>
+            <Editor Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="192.168.1.151" AutoSize="TextChanges" x:Name="IP" TextChanged="SaveUserIP" ></Editor>
+            <Label Text="端口：" Grid.Row="1" Grid.Column="2"/>
+            <Editor Grid.Row="1" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" Text="6000" AutoSize="TextChanges" x:Name="Port"></Editor>
+            <Label Text="宝可梦编辑器" Grid.Row="2" Grid.Column="0"/>
+            <Label Text="盒子：" Grid.Row="3" Grid.Column="0"/>
+            <Entry Keyboard="Numeric" Grid.Row="3" Grid.Column="1" Text="1" x:Name="boxnum"/>
+            <Label Text="栏位：" Grid.Row="3" Grid.Column="2"/>
+            <Entry Keyboard="Numeric" Grid.Row="3" Grid.Column="3" Text="1" x:Name="slotnum"/>
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="写入栏位" Clicked="inject"></Button>
+            <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Text="从栏位读取" Clicked="read"/>
+            <Label Text="偏移量/指针：" VerticalOptions="Center" Grid.Row="5" Grid.Column="0"/>
+            <Editor Grid.Row="5" Grid.Column="1" x:Name="offset"/>
+            <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="从偏移量/指针读取" Clicked="B_ReadFromOff_Click"/>
+            <Label Text="盒子" Grid.Row="7"/>
+            <CheckBox Grid.Row="8" Grid.Column="0" x:Name="CB_ReadChangeBox" CheckedChanged="CB_ReadChangeBox_Check"/>
+            <Label Grid.Row="8" Grid.Column="1" Text="切换盒子时读取"/>
+            <CheckBox Grid.Row="8" Grid.Column="2" x:Name="CB_InjectinSlot" CheckedChanged="CB_InjectinSlot_check"/>
+            <Label Grid.Row="8" Grid.Column="3" Text="注入到指定栏位"/>
+            <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Text="读取当前盒子" Clicked="B_ReadCurrentBox_Click"/>
+            <Button Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Text="写入当前盒子" Clicked="B_WriteCurrentBox_Click"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

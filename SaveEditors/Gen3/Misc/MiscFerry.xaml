@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.MiscFerry"
+             Title="渡船">
+    <ScrollView>
+        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*,*,*,*">
+            <Label Text="可到达" Grid.ColumnSpan="2" HorizontalOptions="Center"/>
+            <Label Text="初始事件" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="Center"/>
+            <CheckBox x:Name="RsouthernCheck" Grid.Row="1"/>
+            <Label Text="南方之岛" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"/>
+            <CheckBox x:Name="IsoutherCheck" Grid.Row="1" Grid.Column="2"/>
+            <Label Text="南方之岛" Grid.Row="1" Grid.Column="3" VerticalOptions="Center"/>
+            <CheckBox x:Name="RnavelrockCheck" Grid.Row="2"/>
+            <Label Text="肚脐岩" Grid.Row="2" Grid.Column="1" VerticalOptions="Center"/>
+            <CheckBox x:Name="InavelrockCheck" Grid.Row="2" Grid.Column="2"/>
+            <Label Text="肚脐岩" Grid.Row="2" Grid.Column="3" VerticalOptions="Center"/>
+            <CheckBox x:Name="RbirthislandCheck" Grid.Row="3"/>
+            <Label Text="诞生之岛" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"/>
+            <CheckBox x:Name="IbirthislandCheck" Grid.Row="3" Grid.Column="2"/>
+            <Label Text="诞生之岛" Grid.Row="3" Grid.Column="3" VerticalOptions="Center"/>
+            <CheckBox x:Name="RfarawayislandCheck" Grid.Row="4"/>
+            <Label Text="远方之岛" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"/>
+            <CheckBox x:Name="IfarawayislandCheck" Grid.Row="4" Grid.Column="2"/>
+            <Label Text="远方之岛" Grid.Row="4" Grid.Column="3" VerticalOptions="Center"/>
+            <CheckBox x:Name="RbattlefrontierCheck" Grid.Row="5"/>
+            <Label Text="对战开拓区" Grid.Row="5" Grid.Column="1" VerticalOptions="Center"/>
+            <CheckBox x:Name="cangetrideCheck" Grid.Row="6"/>
+            <Label Text="可乘坐渡船" Grid.Row="6" Grid.Column="1" VerticalOptions="Center"/>
+            <Button x:Name="getticketsButton" Text="获取船票" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Clicked="UnlockTickets"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:inputs="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.SearchSettings"
+             Title="搜索设置"
+             >
+    <ScrollView>
+        <VerticalStackLayout x:Name="SearchSettingsPage">
+            <Label Text="闪光"></Label>
+            <CheckBox x:Name="ShinyCheck"/>
+            <Label Text="是否为蛋"/>
+            <CheckBox x:Name="EggCheck"/>
+            <Label Text="宝可梦种类"/>
+            <inputs:comboBox x:Name="EncSpecies" BackgroundColor="Transparent"/>
+            <Label Text="招式 1"/>
+            <inputs:comboBox x:Name="EncMove1" BackgroundColor="Transparent"/>
+            <Label Text="招式 2"/>
+            <inputs:comboBox x:Name="EncMove2" BackgroundColor="Transparent"/>
+            <Label Text="招式 3"/>
+            <inputs:comboBox x:Name="EncMove3" BackgroundColor="Transparent"/>
+            <Label Text="招式 4"/>
+            <inputs:comboBox x:Name="EncMove4" BackgroundColor="Transparent"/>
+            <Label Text="原训练家游戏版本"/>
+            <inputs:comboBox x:Name="EncVersion" BackgroundColor="Transparent"/>
+            <Label Text="以蛋的形式"/>
+            <CheckBox HorizontalOptions="Start" x:Name="Egg" IsChecked="True"/>
+            <Label Text="神秘礼物"/>
+            <CheckBox HorizontalOptions="Start" x:Name="神秘礼物" IsChecked="True"/>
+            <Label Text="固定"/>
+            <CheckBox HorizontalOptions="Start" x:Name="Static" IsChecked="True"/>
+            <Label Text="交换"/>
+            <CheckBox HorizontalOptions="Start" x:Name="Trade" IsChecked="True"/>
+            <Label Text="栏位"/>
+            <CheckBox HorizontalOptions="Start" x:Name="Slot" IsChecked="True"/>
+            <Button Text="保存" Clicked="SaveSearchSettings"/>
+            <Button Text="取消" Clicked="CloseSearchSettings"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

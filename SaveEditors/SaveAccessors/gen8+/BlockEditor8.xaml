@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.BlockEditor8"
+             Title="区块编辑器">
+    <ScrollView>
+    <VerticalStackLayout>
+            <local:comboBox x:Name="BlockKey_Picker" SelectedIndexChanged="Update_BlockCV" BackgroundColor="Transparent">
+            </local:comboBox>
+            <Label x:Name="BlockSummary" IsVisible="false"/>
+            <Editor HeightRequest="400"  x:Name="BlockEditor_Hex"/>
+            <Grid x:Name="BlockStack">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="自动"></RowDefinition>
+
+                </Grid.RowDefinitions>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"></RowDefinition>
+                    <RowDefinition Height="4*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Text="将数据块导出到文件夹" Clicked="ExportBlocksFolder"/>
+                <Button Grid.Column="1" Text="从文件夹导入数据块" Clicked="ImportBlocksFolder"/>
+                <Button Grid.Row="1" Text="导出当前数据块" Clicked="ExportCurrentBlock_Clicked"/>
+                <Button Grid.Row="1" Grid.Column="1" Text="导入当前数据块" Clicked="ImportCurrentBlock_Clicked"/>
+                <Button Grid.Row="2" Text="全部导出（单个文件）" Clicked="ExportAllSingleFile"/>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="自动"/>
+                        <RowDefinition Height="自动"/>
+                        <RowDefinition Height="自动"/>
+                        <RowDefinition Height="自动"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="CHK_DataOnly" HorizontalOptions="Start"/>
+                    <Label Text="仅数据区块" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <CheckBox x:Name="CHK_Key" Grid.Row="1" HorizontalOptions="Start"/>
+                    <Label Text="包含 32 位密钥" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <CheckBox x:Name="CHK_Type" Grid.Row="2" HorizontalOptions="Start"/>
+                    <Label Text="包含类型信息" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <CheckBox x:Name="CHK_FakeHeader" Grid.Row="3" HorizontalOptions="Start"/>
+                    <Label Text="标记数据块起始位置（ASCII）" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+            </Grid>
+            <Button x:Name="BE_Close" Text="关闭" Clicked="CloseBlockEditor8"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+    

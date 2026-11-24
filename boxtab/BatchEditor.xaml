@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.BatchEditor"
+             Title="批量编辑器">
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="自动"/>
+                <RowDefinition Height="自动"/>
+            </Grid.RowDefinitions>
+            <Picker x:Name="BatchFormat" SelectedIndexChanged="FormatChanged"/>
+            <control:comboBox x:Name="BatchProperty" Grid.Column="1" SelectedIndexChanged="PropertyChang" BackgroundColor="Transparent"/>
+            <Picker x:Name="BatchEditType" Grid.Column="2"/>
+            <Label x:Name="PropertyTypeLab" Grid.Row="1" FontSize="16"/>
+            <Label x:Name="PropertyValueLab" Grid.Row="1" Grid.Column="1" FontSize="16"/>
+        </Grid>
+        
+        <Button Text="添加" x:Name="AddButton" Clicked="AddButton_Clicked"/>
+        <Editor AutoSize="TextChanges" x:Name="BatchText" HeightRequest="300"/>
+        <Button Text="应用" x:Name="ApplyButton" Clicked="ApplyBatchChanges"/>
+        <Button Text="取消" x:Name="CloseButton" Clicked="CloseButtonClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

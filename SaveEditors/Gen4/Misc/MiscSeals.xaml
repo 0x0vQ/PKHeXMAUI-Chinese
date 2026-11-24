@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.MiscSeals"
+             Title="贴纸">
+    <VerticalStackLayout>
+        <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+            <Button Text="删除全部贴纸" Clicked="B_ClearSeals_Click"/>
+            <Button Text="添加全部合法贴纸" Clicked="OnBAllSealsLegalOnClick" Grid.Row="1"/>
+            <Button x:Name="B_AllSealsIllegal" Text="添加全部非合法贴纸" Clicked="OnBAllSealsLegalOnClick" Grid.Row="2"/>
+            <CollectionView x:Name="CV_Seals" HeightRequest="300" Grid.Column="1" Grid.RowSpan="3"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

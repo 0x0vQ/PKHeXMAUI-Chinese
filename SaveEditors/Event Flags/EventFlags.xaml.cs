@@ -1,0 +1,99 @@
+
+using static PKHeXMAUI.MainPage;
+using PKHeX.Core;
+namespace PKHeXMAUI;
+
+public partial class EventFlags : ContentPage
+{
+    public static EventWorkspace<IEventFlag37, ushort> Editor;
+    public Dictionary<NamedEventValue, bool> ValueDict = [];
+    public EventFlags(IEventFlag37 sav, GameVersion version)
+    {
+        InitializeComponent();
+        ValueDict = [];
+        var editor = Editor = new EventWorkspace<IEventFlag37, ushort>(sav, version);
+        FlagCollection.ItemTemplate = new DataTemplate(() =>
+        {
+            var grid = new Grid() { Padding = 10 };
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Star });
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(3, GridUnitType.Star) });
+            var check = new CheckBox() { VerticalOptions = LayoutOptions.Center };
+            check.SetBinding(CheckBox.IsCheckedProperty, new Binding("Value"));
+            grid.Add(check);
+            var label = new Label();
+            label.SetBinding(Label.TextProperty, new Binding("Key.Name"));
+            grid.Add(label, 1);
+            var tap2 = new TapGestureRecognizer
+            {
+                CommandParameter = grid,
+                Command = new Command(() => tapp(grid, null))
+            };
+            check.GestureRecognizers.Add(tap2);
+            return grid;
+        });
+        AddFlagList(editor.Labels, editor.Flags);
+    }
+    private void AddFlagList(EventLabelCollection list, bool[] values)
+    {
+        var labels = list.Flag;
+        labels = [.. labels.OrderByDescending(z => z.Type)];
+        for (var i = 0; i < labels.Count; i++)
+        {
+            ValueDict.Add(labels[i], values[labels[i].Index]);
+        }
+        FlagCollection.ItemsSource = ValueDict;
+    }
+
+    public void tapp(object? g, TappedEventArgs? e)
+    {
+        Grid gr = (Grid?)g ?? [];
+        var chs = ((CheckBox)gr.Children[0]).IsChecked;
+        ((CheckBox)gr.Children[0]).IsChecked = !chs;
+        var val = ValueDict.Where(z=>z.Key.Name ==((Label)gr.Children[1]).Text).First();
+        ValueDict[val.Key] = !chs;
+    }
+    public async Task save()
+    {
+        EventLabelCollection list = Editor.Labels;
+        bool[] values = Editor.Flags;
+        var labels = list.Flag;
+        for (int i = 0; i < labels.Count; i++)
+        {
+            values[labels[i].Index] = ValueDict[labels[i]];
+        }
+    }
+}
+
+public partial class EventFlagsTab : TabbedPage
+{
+    public static EventFlags? EF2;
+    public static EventConstants? EC2;
+    public static EventResearch? ER2;
+    public EventFlagsTab(IEventFlag37 g37, GameVersion version)
+    {
+        this.BarBackgroundColor = Color.FromArgb("303030");
+        this.BarTextColor = Colors.White;
+        EF2 = new(g37, version);
+        EC2 = new(g37, version);
+        ER2 = new(g37, version);
+        this.Children.Add(EF2);
+        this.Children.Add(EC2);
+        this.Children.Add(ER2);
+        this.Children.Add(new EventEditorSave());
+        this.Children.Add(new cancelpage());
+    }
+}
+public partial class EventEditorSave : ContentPage
+{
+    public EventEditorSave()
+    {
+        this.Title = "保存";
+    }
+
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        EventFlagsTab.EF2?.save();
+        EventFlagsTab.EC2?.save();
+        Navigation.PopModalAsync();
+    }
+}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PKHeXMAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PKHeXMAUI"
+    FlyoutBackgroundColor="Black"
+    x:Name="TheShell"
+    Navigated="checkbox">
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid HeightRequest="100">
+                <Image HeightRequest="100" Source="iconp.png"></Image>
+                
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <MenuItem Text="文件"/>
+    <MenuItem Text="    - 打开文件" x:Name="OpenFile" Shell.FlyoutItemIsVisible="False" Clicked="OpenPKMClicked"/>
+    <MenuItem Text="    - 保存宝可梦文件" x:Name="SavePKM" Shell.FlyoutItemIsVisible="False" Clicked="SavePKMClicked"/>
+    <MenuItem Text="    - 导出存档" x:Name="ExportSave" Shell.FlyoutItemIsVisible="False" Clicked="ExportSaveClicked"/>
+    <MenuItem Text="数据"/>
+    <MenuItem Text="    - 读取盒子" x:Name="LoadBoxes" Shell.FlyoutItemIsVisible="False" Clicked="LoadBoxesClicked"/>
+    <MenuItem Text="    - 导出盒子" x:Name="DumpBox" Shell.FlyoutItemIsVisible="False" Clicked="DumpBoxClicked"/>
+    <MenuItem Text="    - 保存盒子数据++" x:Name="SaveBoxData" Shell.FlyoutItemIsVisible="False" Clicked="SaveBoxDataClicked"/>
+    <MenuItem Text="    - 批量编辑器" x:Name="MenuBatchEditor" Shell.FlyoutItemIsVisible="False" Clicked="OpenBatchEditorClick"/>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Shell.TabBarIsVisible="False" x:Name="PKShell" Route="PKShell">
+
+        <Tab x:Name="pkeditortab" Title="宝可梦编辑器" Icon="bag_pcitems.png" Route="pkeditortab">
+
+            <ShellContent Title="主界面" Route="PKPage">
+                <local:MainPage x:Name="PKPage"></local:MainPage></ShellContent>
+            <ShellContent Title="相遇信息" ContentTemplate="{DataTemplate local:MetTab}" />
+
+
+            <ShellContent Title="能力值" ContentTemplate="{DataTemplate local:StatsTab}"></ShellContent>
+
+            <ShellContent Title="招式" ContentTemplate="{DataTemplate local:AttacksTab}"></ShellContent>
+            <ShellContent Title="外观" ContentTemplate="{DataTemplate local:Cosmeticstab}"></ShellContent>
+            <ShellContent Title="原训练家/杂项" ContentTemplate="{DataTemplate local:OTTab}"></ShellContent>
+        </Tab>
+    </FlyoutItem>
+    
+    <!--Hidden PK Editor Menus-->
+    <MenuItem Text="    - 合法化" x:Name="thelegalizer" Shell.FlyoutItemIsVisible="False" Clicked="LegalizePKM"/>
+    <MenuItem Text="    - 导入 Showdown 配置" x:Name="impshow" Shell.FlyoutItemIsVisible="False" Clicked="ImpShowClicked"/>
+    <MenuItem Text="    - 导出 Showdown 配置" x:Name="expshow" Shell.FlyoutItemIsVisible="False" Clicked="ExpShowClicked"/>
+    
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Shell.TabBarIsVisible="False" x:Name="BoxShell" Route="BoxShell" Title="盒子/队伍">
+        <Tab Icon="ball4.png" Title="盒子/队伍" x:Name="boxtab" Route="boxtab">
+            <ShellContent Title="盒子" ContentTemplate="{DataTemplate local:BoxTab}" x:Name="BoxPage" Route="BoxPage"/>
+            <ShellContent Title="队伍" ContentTemplate="{DataTemplate local:PartyTab}"/>
+        </Tab>
+    </FlyoutItem>
+    
+    <!--Hidden Box Menus-->
+    <MenuItem Text="    - 删除" x:Name="DeleteBoxes" Shell.FlyoutItemIsVisible="False" Clicked="DeleteClicked"/>
+    <MenuItem Text="        - 清空" x:Name="ClearBox" Shell.FlyoutItemIsVisible="False" Clicked="ClearBoxClicked"/>
+    <MenuItem Text="        - 蛋" x:Name="ClearEggs" Shell.FlyoutItemIsVisible="False" Clicked="ClearEggsClicked"/>
+    <MenuItem Text="        - 旧世代宝可梦" x:Name="ClearPast" Shell.FlyoutItemIsVisible="False" Clicked="ClearPastClicked"/>
+    <MenuItem Text="        - 外来宝可梦" x:Name="ClearForeign" Shell.FlyoutItemIsVisible="False" Clicked="ClearForeignClicked"/>
+    <MenuItem Text="        - 未训练宝可梦" x:Name="ClearUntrained" Shell.FlyoutItemIsVisible="False" Clicked="ClearUntrainedClicked"/>
+    <MenuItem Text="        - 未携带道具" x:Name="ClearNoHeldItem" Shell.FlyoutItemIsVisible="False" Clicked="ClearNoHeldItemClicked"/>
+    <MenuItem Text="        - 不合法宝可梦" x:Name="ClearIllegal" Shell.FlyoutItemIsVisible="False" Clicked="ClearIllegalClicked"/>
+    <MenuItem Text="        - 克隆宝可梦" x:Name="ClearClones" Shell.FlyoutItemIsVisible="False" Clicked="ClearClonesClicked"/>
+    <MenuItem Text="    - 排序盒子" x:Name="SortBoxes" Shell.FlyoutItemIsVisible="false" Clicked="SortClick" ></MenuItem>
+    <MenuItem Text="        - 全国图鉴编号" x:Name="SortSpecies" Shell.FlyoutItemIsVisible="false" Clicked="SortBySpecies"/>
+    <MenuItem Text="        - 全国图鉴编号（倒序）" x:Name="SortSpeciesReverse" Shell.FlyoutItemIsVisible="False" Clicked="SortSpeciesReverseClicked"/>
+    <MenuItem Text="        - 等级（从低到高）" x:Name="SortLevellohi" Shell.FlyoutItemIsVisible="False" Clicked="SortLevellohiClicked"/>
+    <MenuItem Text="        - 等级（从高到低）" x:Name="SortLevelhilo" Shell.FlyoutItemIsVisible="False" Clicked="SortLevelhiloClicked"/>
+    <MenuItem Text="        - 相遇日期" x:Name="SortMetDate" Shell.FlyoutItemIsVisible="False" Clicked="SortMetDateClicked"/>
+    <MenuItem Text="        - 宝可梦名称" x:Name="SortSpeciesName" Shell.FlyoutItemIsVisible="False" Clicked="SortSpeciesNameClicked"/>
+    <MenuItem Text="        - 闪光状态" x:Name="SortShiny" Shell.FlyoutItemIsVisible="False" Clicked="SortShinyClicked"/>
+    <MenuItem Text="        - 随机排序" x:Name="SortRandom" Shell.FlyoutItemIsVisible="False" Clicked="SortRandomClicked"/>
+    <MenuItem Text="    - 高级盒子排序" x:Name="SortBoxesAdvanced" Shell.FlyoutItemIsVisible="False" Clicked="SortBoxesAdvancedClicked"/>
+    <MenuItem Text="        - 使用情况" x:Name="SortUsage" Shell.FlyoutItemIsVisible="False" Clicked="SortUsageClicked"/>
+    <MenuItem Text="        - 个体值潜力" x:Name="SortIV" Shell.FlyoutItemIsVisible="False" Clicked="SortIVClicked"/>
+    <MenuItem Text="        - 努力值训练" x:Name="SortEV" Shell.FlyoutItemIsVisible="False" Clicked="SortEVClicked"/>
+    <MenuItem Text="        - 所有权" x:Name="SortOwnership" Shell.FlyoutItemIsVisible="False" Clicked="SortOwnershipClicked"/>
+    <MenuItem Text="        - 属性" x:Name="SortType" Shell.FlyoutItemIsVisible="False" Clicked="SortTypeClicked"/>
+    <MenuItem Text="        - 太晶属性" x:Name="SortTera" Shell.FlyoutItemIsVisible="False" Clicked="SortTeraClicked"/>
+    <MenuItem Text="        - 游戏版本" x:Name="SortVersion" Shell.FlyoutItemIsVisible="False" Clicked="SortVersionClicked"/>
+    <MenuItem Text="        - 种族值总和" x:Name="SortBaseStat" Shell.FlyoutItemIsVisible="False" Clicked="SortBaseStatClicked"/>
+    <MenuItem Text="        - 体型尺寸" x:Name="SortScale" Shell.FlyoutItemIsVisible="False" Clicked="SortScaleClicked"/>
+    <MenuItem Text="        - 奖章数量" x:Name="SortRibbonCount" Shell.FlyoutItemIsVisible="False" Clicked="SortRibbonClicked"/>
+    <MenuItem Text="        - 证明数量" x:Name="SortMarkCount" Shell.FlyoutItemIsVisible="False" Clicked="SortMarkClicked"/>
+    <MenuItem Text="        - 合法性" x:Name="SortLegal" Shell.FlyoutItemIsVisible="False" Clicked="SortLegalClicked"/>
+    <MenuItem Text="        - 遭遇类型" x:Name="SortEncounter" Shell.FlyoutItemIsVisible="False" Clicked="SortEncounterClicked"/>
+    <MenuItem Text="    - 批量修改" x:Name="ModifyBoxes" Shell.FlyoutItemIsVisible="False" Clicked="ModifyBoxesClicked"/>
+    <MenuItem Text="        - 孵化蛋" x:Name="HatchEggs" Shell.FlyoutItemIsVisible="False" Clicked="HatchEggsClicked"/>
+    <MenuItem Text="        - 最大亲密度" x:Name="MaxFriendship" Shell.FlyoutItemIsVisible="False" Clicked="MaxFriendshipClicked"/>
+    <MenuItem Text="        - 最大等级" x:Name="MaxLevel" Shell.FlyoutItemIsVisible="False" Clicked="MaxLevelClicked"/>
+    <MenuItem Text="        - 重置招式" x:Name="ResetMoves" Shell.FlyoutItemIsVisible="False" Clicked="ResetMovesClicked"/>
+    <MenuItem Text="        - 随机招式" x:Name="RandomizeMoves" Shell.FlyoutItemIsVisible="False" Clicked="RandomizeMovesClicked"/>
+    <MenuItem Text="        - 极限特训" x:Name="HyperTrain" Shell.FlyoutItemIsVisible="False" Clicked="HyperTrainClicked"/>
+    <MenuItem Text="        - 清除昵称" x:Name="RemoveNicknames" Shell.FlyoutItemIsVisible="False" Clicked="RemoveNicknamesClicked"/>
+    <MenuItem Text="        - 删除携带道具" x:Name="DeleteHeldItem" Shell.FlyoutItemIsVisible="False" Clicked="DeleteHeldItemClicked"/>
+    <MenuItem Text="        - 恢复状态与招式 PP" x:Name="Heal" Shell.FlyoutItemIsVisible="False" Clicked="HealClicked"/>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Shell.TabBarIsVisible="False" Title="设置">
+        <Tab Icon="main.png" Title="设置">
+            <ShellContent Title="PKHeX 设置" ContentTemplate="{DataTemplate local:PKHeXSettings}"/>
+            <ShellContent Title="ALM 设置" ContentTemplate="{DataTemplate local:ALMSettings}"/>
+            <ShellContent Title="合法性设置" ContentTemplate="{DataTemplate local:LegalitySettings}"/>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Icon="users.png" Title="遭遇数据库">
+        <ShellContent Title="遭遇数据库" ContentTemplate="{DataTemplate local:EncounterDB}" Route="EncounterPage"/>
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Shell.TabBarIsVisible="False" x:Name="LiveHexFlyout" Route="LiveHexFlyout" Title="实时修改">
+        <Tab Icon="language.png" Title="实时修改" x:Name="livehextab" Route="livehextab">
+            <ShellContent Title="实时修改" ContentTemplate="{DataTemplate local:LiveHex}"/>
+        </Tab>
+        <Tab Title="存档编辑器" Route="SaveEditorsPage">
+            <ShellContent Title="存档编辑器" ContentTemplate="{DataTemplate local:SaveEditors}"/>
+        </Tab>
+    </FlyoutItem>
+   
+</Shell>

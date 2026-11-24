@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.MiscCityForest"
+             Title="白色森林/黑色城市">
+    <VerticalStackLayout>
+        <Button x:Name="B_DumpFC" Text="导出数据" Clicked="B_DumpFC_Click"/>
+        <Button x:Name="B_ImportFC" Text="导入数据" Clicked="B_ImportFC_Click"/>
+        <Label Text="将白色版存档的数据导出并导入黑色版存档，或反向操作，即可在同一个存档中拥有白色森林或黑色城市！" />
+    </VerticalStackLayout>
+</ContentPage>

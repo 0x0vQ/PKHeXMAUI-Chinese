@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PKHeXMAUI.MoveShopEditor"
+             Title="招式教学编辑器">
+    <ScrollView>
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="自动"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="索引"/>
+            <Label Grid.Column="1" Text="招式"/>
+            <Label Grid.Column="2" Text="已购买"/>
+            <Label Grid.Column="3" Text="已掌握"/>
+        </Grid>
+        <CollectionView x:Name="moveshopcollection" HeightRequest="500" WidthRequest="400"/>
+        <Button x:Name="GiveAll" Text="全部给予" Clicked="GiveAllMoveShop"/>
+        <Button x:Name="全部移除" Text="全部移除" Clicked="RemoveAllMoveShop"/>
+        <Button Text="保存" Clicked="SaveMoveShop"/>
+        <Button Text="关闭" Clicked="CloseUpShop"/>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

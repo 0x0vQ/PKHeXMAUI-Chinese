@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.TrainerEditor9Misc"
+             Title="杂项">
+    <VerticalStackLayout>
+        <Label Text="地图位置" HorizontalOptions="Center"/>
+        <Grid Padding="10" ColumnDefinitions="*,*" RowDefinitions="*,*,*,*">
+            <Label Text="X 坐标：" HorizontalOptions="End" VerticalOptions="Center"/>
+            <l:NumericUpDown x:Name="TrainerXCoordinateEditor" Grid.Column="1"/>
+            <Label Text="Y 坐标：" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="1"/>
+            <l:NumericUpDown x:Name="TrainerYCoordinateEditor" Grid.Column="1" Grid.Row="1"/>
+            <Label Text="Z 坐标：" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="2"/>
+            <l:NumericUpDown x:Name="TrainerZCoordinateEditor" Grid.Column="1" Grid.Row="2"/>
+            <Label Text="轮盘对战：" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="3"/>
+            <l:NumericUpDown x:Name="TrainerRotationEditor" Grid.Column="1" Grid.Row="3"/>
+        </Grid>
+        <Button x:Name="AllFlyButton" Text="解锁全部飞翔地点" Clicked="UnlockFlyLocations"/>
+        <Button x:Name="StakesButton" Text="收集全部桩" Clicked="CollectStakes"/>
+        <Button x:Name="TMRecipeButton" Text="解锁全部招式学习器配方" Clicked="UnlockTMRecipes"/>
+        <Button x:Name="BikeButton" Text="解锁全部坐骑升级" Clicked="UnlockBike"/>
+        <Button x:Name="FashionButton" Text="解锁全部服装" Clicked="UnlockFashion"/>
+    </VerticalStackLayout>
+</ContentPage>

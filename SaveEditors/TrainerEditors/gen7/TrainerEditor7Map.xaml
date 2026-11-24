@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:PKHeXMAUI"
+             x:Class="PKHeXMAUI.TrainerEditor7Map"
+             Title="地图">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid Padding="10" x:Name="MapGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="地图位置"/>
+                <Label Text="当前地图：" Grid.Row="1" VerticalOptions="Center"/>
+                <l:NumericUpDown x:Name="CurrentMapEntry" Grid.Row="1" Grid.Column="1"/>
+                <Label Text="X 坐标：" Grid.Row="2" VerticalOptions="Center"/>
+                <l:NumericUpDown x:Name="XCoordEntry" Grid.Row="2" Grid.Column="1"/>
+                <Label Text="Z 坐标：" Grid.Row="3" VerticalOptions="Center"/>
+                <l:NumericUpDown x:Name="ZCoordEntry" Grid.Row="3" Grid.Column="1"/>
+                <Label Text="Y 坐标：" Grid.Row="4" VerticalOptions="Center"/>
+                <l:NumericUpDown x:Name="YCoordEntry" Grid.Row="4" Grid.Column="1"/>
+                <Label Text="轮盘对战：" Grid.Row="5" VerticalOptions="Center"/>
+                <l:NumericUpDown x:Name="RotationEntry" Grid.Row="5" Grid.Column="1"/>
+            </Grid>
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="飞行目的地"/>
+                <Button Text="全选" Clicked="UnlockAllFly" Grid.Row="1"/>
+                <CollectionView x:Name="FlyDestinationCV" Grid.Row="2" HeightRequest="300"/>
+            </Grid>
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="显示完整地图"/>
+                <Button Text="全选" Clicked="UnmaskAll" Grid.Row="1"/>
+                <CollectionView x:Name="MapUnmaskCV" Grid.Row="2" HeightRequest="300"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,215 @@
+
+using CommunityToolkit.Maui.Storage;
+using PKHeX.Core;
+using System.Security.Cryptography;
+namespace PKHeXMAUI
+{
+    public partial class BlockEditor8 : ContentPage
+    {
+        private readonly ISCBlockArray SAV;
+        private readonly SCBlockMetadata Metadata;
+        public static ComboItem[] SortedBlockKeys = [];
+
+        private SCBlock CurrentBlock = null!;
+
+        public BlockEditor8(ISCBlockArray sav)
+        {
+            InitializeComponent();
+            SAV = sav;
+            Metadata = new SCBlockMetadata(sav.Accessor, [], []);
+            SortedBlockKeys = [.. Metadata.GetSortedBlockKeyList()];
+            BlockKey_Picker.ItemSource = SortedBlockKeys;
+            BlockKey_Picker.DisplayMemberPath = "Text";
+        }
+
+        private void Update_BlockCV(object sender, EventArgs e)
+        {
+            if (BlockKey_Picker.SelectedItem != null)
+            {
+                var key = (uint?)((ComboItem?)BlockKey_Picker.SelectedItem)?.Value??(uint)0;
+                CurrentBlock = SAV.Accessor.GetBlock(key);
+                UpdateBlockSummaryControls();
+            }
+            else
+            {
+                BlockStack.Clear();
+                BlockSummary.Text = string.Empty;
+            }
+        }
+        private void UpdateBlockSummaryControls()
+        {
+            BlockStack.Clear();
+            BlockEditor_Hex.IsVisible = true;
+            BlockSummary.IsVisible = true;
+            BlockSummary.Text = $"数据块详情：\n{SCBlockUtil.GetBlockSummary(CurrentBlock)}";
+            var block = CurrentBlock;
+            var blockName = Metadata.GetBlockName(block, out var obj);
+            BlockEditor_Hex.Text = string.Join(" ", block.Data.ToArray().Select(z => $"{z:X2}"));
+            if(CurrentBlock.Type.IsBoolean())
+            {
+                BlockEditor_Hex.IsVisible = false;
+                var CB_TypeToggle = new comboBox
+                {
+                    ItemSource = new[]
+                {
+                    new ComboItem(nameof(SCTypeCode.Bool1), (int)SCTypeCode.Bool1),
+                    new ComboItem(nameof(SCTypeCode.Bool2), (int)SCTypeCode.Bool2),
+                },
+                    SelectedIndex = (int)CurrentBlock.Type - 1,
+                    DisplayMemberPath = "Text"
+                };
+                CB_TypeToggle.SelectedIndexChanged += CB_TypeToggle_SelectionChanged;
+                BlockStack.Add(CB_TypeToggle);
+            }
+            if (obj != null)
+            {
+                var props = ReflectUtil.GetPropertiesCanWritePublicDeclared(obj.GetType());
+                if (props.Count() > 1)
+                {
+                    int row = 0;
+                    BlockEditor_Hex.IsVisible = false;
+                    foreach (var prop in props)
+                    {
+                        var propLabel = new Label() { Text = prop };
+                        BlockStack.Add(propLabel, 0, row);
+                        var BlockEntry = new Entry
+                        {
+                            BindingContext = obj
+                        };
+                        try { BlockEntry.SetBinding(Entry.TextProperty, prop, BindingMode.TwoWay); }
+                        catch (Exception) { BlockStack.Remove(propLabel); continue; }
+                        BlockStack.Add(BlockEntry, 1, row);
+                        row++;
+                    }
+                    return;
+                }
+            }
+            var o = SCBlockMetadata.GetEditableBlockObject(block);
+            if (o != null)
+            {
+                var props = ReflectUtil.GetPropertiesPublic(o.GetType());
+                if (props.Count() > 1)
+                {
+                    int row = 0;
+                    BlockEditor_Hex.IsVisible = false;
+                    foreach (var prop in props)
+                    {
+                        BlockStack.Add(new Label() { Text = prop }, 0, row);
+                        var BlockEntry = new Entry
+                        {
+                            BindingContext = o
+                        };
+                        BlockEntry.SetBinding(Entry.TextProperty, prop, BindingMode.TwoWay);
+                        BlockStack.Add(BlockEntry, 1, row);
+                        row++;
+                    }
+                    return;
+                }
+            }
+        }
+
+        private void CB_TypeToggle_SelectionChanged(object? sender, EventArgs? e)
+        {
+            var block = CurrentBlock;
+            var cType = block.Type;
+            var cValue = (SCTypeCode?)((ComboItem?)((comboBox?)sender)?.SelectedItem)?.Value??0;
+            if (cType == cValue)
+                return;
+            block.ChangeBooleanType(cValue);
+            UpdateBlockSummaryControls();
+        }
+
+        private void CloseBlockEditor8(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
+        private async void ExportBlocksFolder(object sender, EventArgs e)
+        {
+            var FolderResults = await FolderPicker.PickAsync(CancellationToken.None);
+            if (FolderResults.IsSuccessful)
+            {
+                var path = FolderResults.Folder.Path;
+                var blocks = SAV.AllBlocks;
+                ExportAllBlocks(blocks, path);
+            }
+        }
+        private static void ExportAllBlocks(IEnumerable<SCBlock> blocks, string path)
+        {
+            foreach (var b in blocks.Where(z => z.Data.Length != 0))
+            {
+                var fn = $"{SCBlockUtil.GetBlockFileNameWithoutExtension(b)}.bin";
+                var fileName = Path.Combine(path, fn);
+                File.WriteAllBytes(fileName, b.Data);
+            }
+        }
+
+        private async void ImportBlocksFolder(object sender, EventArgs e)
+        {
+            var FolderResults = await FolderPicker.PickAsync(CancellationToken.None);
+            if (FolderResults.IsSuccessful)
+            {
+                var failed = SCBlockUtil.ImportBlocksFromFolder(FolderResults.Folder.Path,SAV);
+                if(failed.Count != 0)
+                {
+                    var msg = string.Join(Environment.NewLine, failed);
+                    await DisplayAlertAsync("失败", $"导入失败：{msg}", "取消");
+                }
+            }
+        }
+
+        private void ExportCurrentBlock_Clicked(object sender, EventArgs e) => ExportSelectBlock(CurrentBlock);
+
+        private async void ExportSelectBlock(SCBlock block)
+        {
+            var name = SCBlockUtil.GetBlockFileNameWithoutExtension(block);
+            await using var BlockStreams = new MemoryStream(block.Data.ToArray());
+            var result = await FileSaver.SaveAsync($"{name}.bin", BlockStreams, CancellationToken.None);
+            if (result.IsSuccessful)
+                await DisplayAlertAsync("成功", $"数据块文件已保存到：{result.FilePath}", "取消");
+            else
+                await DisplayAlertAsync("失败", $"数据块文件保存失败：{result.Exception.Message}", "取消");
+        }
+
+        private void ImportCurrentBlock_Clicked(object sender, EventArgs e) => ImportSelectBlock(CurrentBlock);
+        private async void ImportSelectBlock(SCBlock blockTarget)
+        {
+            var Pickedfile = await FilePicker.PickAsync();
+            if (Pickedfile is null)
+                return;
+            var data = blockTarget.Data;
+            var path = Pickedfile.FullPath;
+            var file = new FileInfo(path);
+            if(file.Length != data.Length)
+            {
+                await DisplayAlertAsync("错误", $"文件大小不正确。当前文件大小：0x{file.Length:X8}", "取消");
+                return;
+            }
+            var newdata = File.ReadAllBytes(path);
+            blockTarget.ChangeData(newdata);
+        }
+
+        private async void ExportAllSingleFile(object sender, EventArgs e)
+        {
+            var folder = await FolderPicker.PickAsync(CancellationToken.None);
+            if (!folder.IsSuccessful)
+                return;
+            var path = folder.Folder.Path;
+            var blocks = SAV.Accessor.BlockInfo;
+            var option = GetExportOption();
+            SCBlockUtil.ExportAllBlocksAsSingleFile(blocks, path, option);
+        }
+        private SCBlockExportOption GetExportOption()
+        {
+            var option = SCBlockExportOption.None;
+            if (CHK_DataOnly.IsChecked)
+                option |= SCBlockExportOption.DataOnly;
+            if (CHK_Key.IsChecked)
+                option |= SCBlockExportOption.Key;
+            if (CHK_Type.IsChecked)
+                option |= SCBlockExportOption.TypeInfo;
+            if (CHK_FakeHeader.IsChecked)
+                option |= SCBlockExportOption.FakeHeader;
+            return option;
+        }
+    }
+}
