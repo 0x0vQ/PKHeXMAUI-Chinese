@@ -29,7 +29,7 @@
                 <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,*">
                     <Label Text="庆典任务"/>
                     <Button x:Name="B_FunfestMissions" Clicked="B_FunfestMissions_Click" Text="全部解锁（不含编号 0）" Grid.Row="1"/>
-                    <CollectionView x:Name="CV_FunfestMissions" HeightRequest="200" Grid.Row="2" SelectionMode="单打" SelectionChanged="CV_FunfestMissions_SelectionChanged"/>
+                    <CollectionView x:Name="CV_FunfestMissions" HeightRequest="200" Grid.Row="2" SelectionMode="Single" SelectionChanged="CV_FunfestMissions_SelectionChanged"/>
                     <Label x:Name="L_FMLocked" Text="已解锁" Grid.Row="3"/>
                     <l:comboBox x:Name="CB_FMLevel" Grid.Row="3" Grid.Column="1" SelectedIndexChanged="ChangeFestaMissionValue"/>
                     <Label Text="最佳记录总数" Grid.Row="4"/>

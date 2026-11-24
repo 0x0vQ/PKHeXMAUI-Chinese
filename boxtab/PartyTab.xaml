@@ -6,7 +6,7 @@
     <RefreshView x:Name="PartyRefresh">
         <ScrollView>
             <VerticalStackLayout>
-                <CollectionView HeightRequest="375" WidthRequest="400" x:Name="PartyView" SelectionMode="单打" ></CollectionView>
+                <CollectionView HeightRequest="375" WidthRequest="400" x:Name="PartyView" SelectionMode="Single" ></CollectionView>
             </VerticalStackLayout>
         </ScrollView>
     </RefreshView>

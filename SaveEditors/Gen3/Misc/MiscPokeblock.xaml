@@ -5,7 +5,7 @@
              Title="宝可方块">
     <ScrollView>
         <VerticalStackLayout x:Name="PokeBlockStack">
-            <CollectionView x:Name="CV_Pokeblocks" SelectionMode="单打" HeightRequest="300" Margin="20" VerticalScrollBarVisibility="Always"/>
+            <CollectionView x:Name="CV_Pokeblocks" SelectionMode="Single" HeightRequest="300" Margin="20" VerticalScrollBarVisibility="Always"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

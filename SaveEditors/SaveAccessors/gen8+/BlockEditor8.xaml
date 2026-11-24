@@ -16,27 +16,27 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
 
                 </Grid.RowDefinitions>
             </Grid>
@@ -58,10 +58,10 @@
                 <Button Grid.Row="2" Text="全部导出（单个文件）" Clicked="ExportAllSingleFile"/>
                 <Grid Grid.Row="2" Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="自动"/>
-                        <RowDefinition Height="自动"/>
-                        <RowDefinition Height="自动"/>
-                        <RowDefinition Height="自动"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <CheckBox x:Name="CHK_DataOnly" HorizontalOptions="Start"/>
                     <Label Text="仅数据区块" HorizontalOptions="Center" VerticalOptions="Center"/>

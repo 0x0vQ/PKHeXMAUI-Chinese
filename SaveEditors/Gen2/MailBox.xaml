@@ -9,8 +9,8 @@
             <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
                 <Label Text="队伍邮箱"/>
                 <Label Text="电脑邮箱" Grid.Column="1"/>
-                <CollectionView x:Name="CV_PartyHeld" HeightRequest="150" Grid.Row="1" SelectionChanged="EntryControl" SelectionMode="单打"/>
-                <CollectionView x:Name="CV_PCBox" HeightRequest="150" Grid.Row="1" Grid.Column="1" SelectionChanged="EntryControl" SelectionMode="单打"/>
+                <CollectionView x:Name="CV_PartyHeld" HeightRequest="150" Grid.Row="1" SelectionChanged="EntryControl" SelectionMode="Single"/>
+                <CollectionView x:Name="CV_PCBox" HeightRequest="150" Grid.Row="1" Grid.Column="1" SelectionChanged="EntryControl" SelectionMode="Single"/>
             </Grid>
             <Grid ColumnDefinitions="*,*,*">
                 <Label x:Name="L_BoxSize" Text="电脑邮箱已处理："/>

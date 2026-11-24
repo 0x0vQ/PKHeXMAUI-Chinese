@@ -7,7 +7,7 @@
         <Grid ColumnDefinitions="*,2*" RowDefinitions="*,*,*,*">
             <VerticalStackLayout>
                 <Label Text="接收列表："/>
-                <CollectionView BackgroundColor="White" HeightRequest="1000" x:Name="CV_ReceivedList" SelectionMode="单打" SelectionChanged="CV_ReceivedList_SelectionChanged" Grid.Row="1"/>
+                <CollectionView BackgroundColor="White" HeightRequest="1000" x:Name="CV_ReceivedList" SelectionMode="Single" SelectionChanged="CV_ReceivedList_SelectionChanged" Grid.Row="1"/>
             </VerticalStackLayout>
             <Grid Grid.Column="1" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
                 <Label Text="二维码" x:Name="L_QR"/>

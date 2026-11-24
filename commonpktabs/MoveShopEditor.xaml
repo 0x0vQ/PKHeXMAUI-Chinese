@@ -7,7 +7,7 @@
     <VerticalStackLayout>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="自动"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>

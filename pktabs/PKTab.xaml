@@ -10,27 +10,27 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
-                    <RowDefinition Height="自动"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>

@@ -13,8 +13,8 @@
                 
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="自动"/>
-                <RowDefinition Height="自动"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Picker x:Name="BatchFormat" SelectedIndexChanged="FormatChanged"/>
             <control:comboBox x:Name="BatchProperty" Grid.Column="1" SelectedIndexChanged="PropertyChang" BackgroundColor="Transparent"/>

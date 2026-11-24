@@ -6,7 +6,7 @@
              Title="名人堂（第三世代）">
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView x:Name="HoFCV" HeightRequest="300" SelectionMode="单打" Margin="5"/>
+            <CollectionView x:Name="HoFCV" HeightRequest="300" SelectionMode="Single" Margin="5"/>
             <Grid ColumnDefinitions="*,*,*">
                 <local:comboBox x:Name="CB_Species"/>
                 <local:NumericUpDown x:Name="NUD_Members" Grid.Column="1" MinValue="0" MaxValue="5"/>

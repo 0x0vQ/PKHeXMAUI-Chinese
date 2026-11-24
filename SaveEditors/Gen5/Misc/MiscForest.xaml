@@ -6,7 +6,7 @@
              Title="森林">
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView x:Name="CV_Slots" HeightRequest="300" SelectionMode="单打" SelectionChanged="ChangeSlot"/>
+            <CollectionView x:Name="CV_Slots" HeightRequest="300" SelectionMode="Single" SelectionChanged="ChangeSlot"/>
             <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*">
                 <l:comboBox x:Name="CB_Areas" SelectedIndexChanged="ChangeArea" Grid.ColumnSpan="2"/>
                 <Label Grid.Row="1" Text="已解锁区域 1–8："/>
