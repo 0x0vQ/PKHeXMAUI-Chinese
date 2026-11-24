@@ -67,12 +67,13 @@ jobs:
           echo "ANDROID_SIGNING_KEYSTORE=$KEYSTORE_PATH" >> "$GITHUB_ENV"
 
       - name: Restore dependencies
-        run: dotnet restore PKHeX.MAUI.csproj -p:TargetFramework=net10.0-android36.0
+        run: dotnet restore PKHeX.MAUI.csproj -p:TargetFrameworks=net10.0-android36.0 -p:TargetFramework=net10.0-android36.0
 
       - name: Build and sign APK
         run: >-
           dotnet publish PKHeX.MAUI.csproj
           -f net10.0-android36.0
+          -p:TargetFrameworks=net10.0-android36.0
           -c Release
           -p:AndroidPackageFormat=apk
           -p:AndroidKeyStore=true
